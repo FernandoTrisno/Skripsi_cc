@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/header_edit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="PERINGATAN"
+        android:textColor="@color/white"
+        android:textSize="20dp"></TextView>
+
+    <TextView
+        android:id="@+id/text_peringatan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_edit"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_centerInParent="true"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20dp"></TextView>
+
+
+        <Button
+            android:id="@+id/btn_oke_peringatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded_red"
+            android:text="Oke"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/text_peringatan"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"></Button>
+
+
+
+
+</RelativeLayout>

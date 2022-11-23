@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".BerandaActivitySuggestion">
+
+    <TextView
+        android:id="@+id/nama_pengguna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="30dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/kebutuhan_kalori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama_pengguna"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="10dp"
+        android:text="Kebutuhan Kalori : "
+        android:textColor="@color/black"
+        android:textSize="20dp"></TextView>
+
+    <TextView
+        android:id="@+id/kebutuhan_tubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama_pengguna"
+        android:layout_marginTop="7dp"
+        android:layout_toRightOf="@id/kebutuhan_kalori"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/kalori_tubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kebutuhan_kalori"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="Konsumsi Kalori Hari Ini"
+        android:textColor="@color/black"
+        android:textSize="18dp"></TextView>
+
+    <TextView
+        android:id="@+id/jumlah_kalori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kalori_tubuh"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:text="0"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="250dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/jumlah_kalori"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/suggestion"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp">
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bg_suggestion"></View>
+
+        <TextView
+            android:id="@+id/suggestion_Text"
+            android:layout_width="210dp"
+            android:layout_height="90dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/red"
+            android:textSize="16dp"></TextView>
+
+        <TextView
+            android:id="@+id/btn_selesai"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/suggestion_Text"
+            android:layout_centerInParent="true"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="Selesai"
+            android:textColor="@color/white">]
+        </TextView>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/button_makan_pagi"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/suggestion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_rounded_light_grey">
+
+        <ImageView
+            android:id="@+id/img_mp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7.5dp"
+            android:src="@drawable/breakfast_icons"></ImageView>
+
+        <TextView
+            android:id="@+id/text_mp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_mp"
+            android:text="Catat Makan Pagi"
+            android:textColor="@color/text_button_grey"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/ket_mp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_mp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_mp"
+            android:text="TextView"
+            android:textColor="@color/text_button_grey"
+            android:textSize="12dp"></TextView>
+
+    </RelativeLayout>
+
+    // Makan Siang
+
+    <RelativeLayout
+        android:id="@+id/button_makan_siang"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/button_makan_pagi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded_light_grey">
+
+        <ImageView
+            android:id="@+id/img_ms"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7.5dp"
+            android:src="@drawable/lunch_icons"></ImageView>
+
+        <TextView
+            android:id="@+id/text_ms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_ms"
+            android:text="Catat Makan Siang"
+            android:textColor="@color/text_button_grey"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/ket_ms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_ms"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_ms"
+            android:text="TextView"
+            android:textColor="@color/text_button_grey"
+            android:textSize="12dp"></TextView>
+    </RelativeLayout>
+
+    // Makan Malam
+
+    <RelativeLayout
+        android:id="@+id/button_makan_malam"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/button_makan_siang"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded_light_grey">
+
+        <ImageView
+            android:id="@+id/img_mm"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7.5dp"
+            android:src="@drawable/dinner_icons"></ImageView>
+
+        <TextView
+            android:id="@+id/text_mm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_mm"
+            android:text="Catat Makan Malam"
+            android:textColor="@color/text_button_grey"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/ket_mm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_mm"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_mm"
+            android:text="TextView"
+            android:textColor="@color/text_button_grey"
+            android:textSize="12dp"></TextView>
+
+    </RelativeLayout>
+
+    // Makan Cemilan
+
+    <RelativeLayout
+        android:id="@+id/button_makan_cemilan"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/button_makan_malam"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded_light_grey">
+
+        <ImageView
+            android:id="@+id/img_mc"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7.5dp"
+            android:src="@drawable/snack_icons"></ImageView>
+
+        <TextView
+            android:id="@+id/text_mc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/img_mc"
+            android:text="Catat Makan Cemilan"
+            android:textColor="@color/text_button_grey"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/ket_mc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_mc"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img_mc"
+            android:text="TextView"
+            android:textColor="@color/text_button_grey"
+            android:textSize="12dp"></TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:outlineAmbientShadowColor="@color/grey_nav_bottom">
+
+        <RelativeLayout
+            android:id="@+id/home_beranda"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="5dp">
+
+            <ImageView
+                android:id="@+id/home_icon_beranda"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_home_24"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_icon_beranda"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="Beranda"
+                android:textColor="@color/blue_nav_bottom">
+
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/report_beranda"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/home_beranda">
+
+            <ImageView
+                android:id="@+id/report_icon_beranda"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_bar_chart_grey"></ImageView>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/report_icon_beranda"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="Laporan Kalori"
+                android:textColor="@color/grey_nav_bottom">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profil_beranda"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@id/report_beranda">
+
+            <ImageView
+                android:id="@+id/profil_icon_beranda"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_person_grey"></ImageView>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profil_icon_beranda"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Profil"
+                android:textColor="@color/grey_nav_bottom">
+
+            </TextView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

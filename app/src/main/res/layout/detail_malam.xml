@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/con_header_detailmakanan"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/blue_button" />
+
+    <ImageButton
+        android:id="@+id/ic_back_malam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/blue_button"
+        android:src="@drawable/ic_back"></ImageButton>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="38dp"
+        android:layout_toRightOf="@id/ic_back_malam"
+        android:fontFamily="sans-serif-medium"
+        android:text="Detail Makanan Malam"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_catatmalam"
+        android:layout_width="328dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/con_header_detailmakanan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_rounded_blue"
+        android:clipToOutline="true"
+        android:text="Catat Makanan / Minuman" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listMakanMalam"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/button_catatmalam"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>

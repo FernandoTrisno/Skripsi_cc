@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+     <Button
+        android:id="@+id/button_update"
+        android:layout_width="215dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_rounded_blue"
+        android:clipToOutline="true"
+        android:text="Update Berat Badan" />
+
+    <Button
+        android:id="@+id/button_keluar"
+        android:layout_width="215dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/button_update"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_rounded_red"
+        android:clipToOutline="true"
+        android:text="Keluar" />
+
+    <RelativeLayout
+        android:id="@+id/nav_battom"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:outlineAmbientShadowColor="@color/grey_nav_bottom">
+
+        <RelativeLayout
+            android:id="@+id/home_profil"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="5dp">
+
+            <ImageView
+                android:id="@+id/home_icon_report"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_home_grey"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_icon_report"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="Beranda"
+                android:textColor="@color/grey_nav_bottom">
+
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/report_profil"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/home_profil">
+
+            <ImageView
+                android:id="@+id/report_icon_report"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_bar_chart_grey"></ImageView>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/report_icon_report"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="Laporan Kalori"
+                android:textColor="@color/grey_nav_bottom">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profil_profil"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@id/report_profil">
+
+            <ImageView
+                android:id="@+id/profil_icon_report"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/ic_baseline_person_pin_24"></ImageView>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profil_icon_report"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Profil"
+                android:textColor="@color/blue_nav_bottom">
+
+            </TextView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

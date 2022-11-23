@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item android:title="Pantau Harian"
+        android:id="@+id/dropdown_menu1">
+    </item>
+    <item android:title="Pantau Mingguan"
+        android:id="@+id/dropdown_menu2">
+    </item>
+    <item android:title="Ganti Tanggal"
+        android:id="@+id/dropdown_menu3">
+    </item>
+
+</menu>

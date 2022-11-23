@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DaftarMakanMinum">
+
+    <View
+        android:id="@+id/con_header_makanan_minuman"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/blue_button" />
+
+    <ImageButton
+        android:id="@+id/ic_back_daftarmakanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/blue_button"
+        android:src="@drawable/ic_back"></ImageButton>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="38dp"
+        android:layout_toRightOf="@id/ic_back_daftarmakanan"
+        android:fontFamily="sans-serif-medium"
+        android:text="Makanan / Minuman"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <SearchView
+        android:id="@+id/button_cari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/con_header_makanan_minuman"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/grey"></SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/firestoreList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_catat"
+        android:layout_below="@id/button_cari"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/button_catat"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:text="Catat Makanan / Minuman" />
+
+</RelativeLayout>

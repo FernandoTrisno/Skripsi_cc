@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".FormActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/blue_button"
+        android:id="@+id/con_header_form"
+        >
+
+    </View>
+
+    <TextView
+        android:id="@+id/text_header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        android:text="Hitung Kalori"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        >
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bb_form"
+        android:layout_below="@id/con_header_form"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:hint="Berat badan (kg)">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bb_text_form">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tb_form"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Tinggi Badan (cm)"
+        android:layout_below="@id/bb_form"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_text_form">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/usia_form"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tb_form"
+        android:hint="Usia">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usia_text_form">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jk_text"
+        android:text="Jenis Kelamin"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/usia_form">
+    </TextView>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_grup"
+        android:layout_below="@id/jk_text"
+        >
+
+        <RadioButton
+            android:id="@+id/radio_laki"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/jk_text"
+            android:layout_marginStart="32dp"
+            android:text="Laki-laki"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/radio_perempuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_toRightOf="@id/radio_laki"
+            android:text="Perempuan"
+            android:textSize="16dp">
+        </RadioButton>
+
+    </RadioGroup>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/aktivitas_text"
+        android:text="Aktivitas Fisik"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/radio_grup">
+    </TextView>
+
+    <android.widget.Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aktivitas_text"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:spinnerMode="dropdown">
+    </android.widget.Spinner>
+
+
+    <Button
+        android:id="@+id/button_hitung"
+        android:layout_width="328dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_rounded_blue"
+        android:clipToOutline="true"
+        android:text="HITUNG"></Button>
+</RelativeLayout>

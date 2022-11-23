@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".UpdateActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/blue_button"
+        android:id="@+id/con_header_form"
+        >
+
+    </View>
+    <ImageButton
+        android:id="@+id/ic_back_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/blue_button"
+        android:src="@drawable/ic_back"></ImageButton>
+
+    <TextView
+        android:id="@+id/text_header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="38dp"
+        android:layout_toRightOf="@id/ic_back_update"
+        android:fontFamily="sans-serif-medium"
+        android:text="Perbarui Hitung Kalori"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bb_form_udpate"
+        android:layout_below="@id/con_header_form"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:hint="Berat badan (kg)">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bb_text_form_udpate">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tb_form_update"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Tinggi Badan (cm)"
+        android:layout_below="@id/bb_form_udpate"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_text_form_udpate">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/usia_form_update"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tb_form_update"
+        android:hint="Usia">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usia_text_form_udpate">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/aktivitas_text"
+        android:text="Aktivitas Fisik"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/usia_form_update">
+    </TextView>
+
+    <android.widget.Spinner
+        android:id="@+id/spinner_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aktivitas_text"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:spinnerMode="dropdown">
+    </android.widget.Spinner>
+
+
+    <Button
+        android:id="@+id/button_hitung_update"
+        android:layout_width="328dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/spinner_update"
+        android:layout_marginTop="200dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_rounded_blue"
+        android:clipToOutline="true"
+        android:text="SIMPAN"></Button>
+</RelativeLayout>

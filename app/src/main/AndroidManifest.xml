@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.skripsi_cc">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Controling Calories"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Skripsi_cc"
+        tools:targetApi="28"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Controling Calories">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".loginActivity"/>
+        <activity android:name=".daftarActivity"/>
+        <activity android:name=".FormActivity"/>
+        <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".BerandaActivity"/>
+        <activity android:name=".ReportActivity"/>
+        <activity android:name=".ReportActivityBarChart"></activity>
+        <activity android:name=".ProfilActivity"/>
+        <activity android:name=".BerandaActivitySuggestion"/>
+        <activity android:name=".DaftarMakanMinum"/>
+        <activity android:name=".DaftarMakanMinumSiang"/>
+        <activity android:name=".DaftarMakanMinumMalam"/>
+        <activity android:name=".DaftarMakanMinumCemilan"/>
+        <activity android:name=".DetailMakanPagi"/>
+        <activity android:name=".DetailMakanSiang"/>
+        <activity android:name=".DetailMakanMalam"/>
+        <activity android:name=".DetailMakanCemilan"/>
+        <activity android:name=".BerandaActivitySport"></activity>
+    </application>
+
+</manifest>
