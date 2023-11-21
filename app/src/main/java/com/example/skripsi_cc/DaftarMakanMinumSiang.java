@@ -61,6 +61,7 @@ public class DaftarMakanMinumSiang extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         listkalori = findViewById(R.id.firestoreList);
         cari = (SearchView) findViewById(R.id.button_cari);
+        cari.setIconified(false);
         back_daftarmakan = findViewById(R.id.ic_back_daftarmakanan);
         btn_catatmakanan = findViewById(R.id.button_catat);
         listMakananAdapter = new ListMakananAdapter(getApplicationContext(),list);
@@ -135,19 +136,17 @@ public class DaftarMakanMinumSiang extends AppCompatActivity {
 
     private void filter (String text){
         ArrayList<ListMakanan> filterlist = new ArrayList<ListMakanan>();
-        for(ListMakanan item : list){
-            if (item.getNama_makanan().toLowerCase().contains(text.toLowerCase())){
-                filterlist.add(item);
-                listkalori.setVisibility(View.VISIBLE);
-            }
-            if(filterlist.isEmpty()){
-                Toast.makeText(this, "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
-                listkalori.setVisibility(View.INVISIBLE);
-            }else{
-                listMakananAdapter.filteradapterlist(filterlist);
+        if(text.equals("")){
+            System.out.println("empty");
+        }else{
+            for(ListMakanan item : list){
+                if (item.getNama_makanan().toLowerCase().contains(text.toLowerCase())){
+                    filterlist.add(item);
+                    listkalori.setVisibility(View.VISIBLE);
+                }
             }
         }
-
+        listMakananAdapter.filteradapterlist(filterlist);
     }
 
 
@@ -161,7 +160,7 @@ public class DaftarMakanMinumSiang extends AppCompatActivity {
                         if(task.isSuccessful()){
                             list.clear();
                             for(QueryDocumentSnapshot document : task.getResult()){
-                                ListMakanan listMakanan = new ListMakanan(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"));
+                                ListMakanan listMakanan = new ListMakanan(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"),document.getString("gram"));
                                 list.add(listMakanan);
                             }
                             listMakananAdapter.notifyDataSetChanged();

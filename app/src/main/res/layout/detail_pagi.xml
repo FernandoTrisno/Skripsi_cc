@@ -45,11 +45,24 @@
         android:clipToOutline="true"
         android:text="Catat Makanan / Minuman" />
 
+    <TextView
+        android:id="@+id/text_detailmp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_catatpagi"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey"
+        android:gravity="center"
+        android:text="Detail Makan Pagi"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMakanPagi"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button_catatpagi"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@id/text_detailmp"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

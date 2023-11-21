@@ -14,4 +14,7 @@
     <color name="red">#EB5757</color>
     <color name="blue_nav_bottom">#4A4CCB</color>
     <color name="grey_nav_bottom">#7B7B7B</color>
+    <color name="red_pastel">#f6aa90</color>
+    <color name="green_pastel">#9bd0b7</color>
+    <color name="yellow_pastel">#f8df81</color>
 </resources>

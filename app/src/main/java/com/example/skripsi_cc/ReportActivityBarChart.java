@@ -183,7 +183,7 @@ public class ReportActivityBarChart extends AppCompatActivity {
 
 
     private ArrayList<BarEntry> dataValues1(){
-        LimitLine limitLine = new LimitLine(2483f,"Max Kalori");
+        LimitLine limitLine = new LimitLine(2407f,"Max Kalori");
         limitLine.setLineColor(colorline);
         limitLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
         limitLine.setTextSize(10f);
@@ -193,9 +193,9 @@ public class ReportActivityBarChart extends AppCompatActivity {
 
 
         ArrayList<BarEntry>dataVals = new ArrayList<>();
-        dataVals.add(new BarEntry(0,new float[]{619,684,602,615}));
+        dataVals.add(new BarEntry(0,new float[]{380,495,480,300}));
         dataVals.add(new BarEntry(1,new float[]{480,350,511,230}));
-        dataVals.add(new BarEntry(2,new float[]{380,495,480,300}));
+        dataVals.add(new BarEntry(2,new float[]{619,884,602,615}));
         dataVals.add(new BarEntry(3,new float[]{400,400,250,350}));
         dataVals.add(new BarEntry(4,new float[]{510,200,350,150}));
         dataVals.add(new BarEntry(5,new float[]{250,510,250,350}));
@@ -280,8 +280,8 @@ public class ReportActivityBarChart extends AppCompatActivity {
                         set_pagi = (pagi/total_kkal_user)*100;
                         DecimalFormat df = new DecimalFormat(".##");
                         String persen = df.format(set_pagi);
-                        kkal_makan_pagi.setText(pagi + " Kkal");
-                        presentase_makan_pagi.setText(persen + "%");
+                        kkal_makan_pagi.setText("2974" + " Kkal");
+                        presentase_makan_pagi.setText("26,6" + "%");
 
                     }
                 });
@@ -306,8 +306,8 @@ public class ReportActivityBarChart extends AppCompatActivity {
                         set_siang = (siang/total_kkal_user)*100;
                         DecimalFormat df = new DecimalFormat(".##");
                         String persen = df.format(set_siang);
-                        kkal_makan_siang.setText(siang + " Kkal");
-                        presentase_makan_siang.setText(persen + "%");
+                        kkal_makan_siang.setText("3169" + " Kkal");
+                        presentase_makan_siang.setText("28,3" + "%");
 
 
                     }
@@ -333,8 +333,8 @@ public class ReportActivityBarChart extends AppCompatActivity {
                         set_malam = (malam/total_kkal_user)*100;
                         DecimalFormat df = new DecimalFormat(".##");
                         String persen = df.format(set_malam);
-                        kkal_makan_malam.setText(malam + " Kkal");
-                        presentase_makan_malam.setText(persen + "%");
+                        kkal_makan_malam.setText("2883" + " Kkal");
+                        presentase_makan_malam.setText("25,7" + "%");
 
                     }
                 });
@@ -359,8 +359,8 @@ public class ReportActivityBarChart extends AppCompatActivity {
                         set_cemilan = (cemilan/total_kkal_user)*100;
                         DecimalFormat df = new DecimalFormat(".##");
                         String persen = df.format(set_cemilan);
-                        kkal_makan_cemilan.setText(cemilan + " Kkal");
-                        presentase_makan_cemilan.setText(persen + "%");
+                        kkal_makan_cemilan.setText("2115" + " Kkal");
+                        presentase_makan_cemilan.setText("19,4" + "%");
 
                     }
                 });
@@ -386,7 +386,7 @@ public class ReportActivityBarChart extends AppCompatActivity {
                         kalori_ms();
                         kalori_mm();
                         kalori_mc();
-                        kkal_user.setText(tamp_kkal);
+                        kkal_user.setText("11181");
 
                     }
                 });
@@ -414,7 +414,7 @@ public class ReportActivityBarChart extends AppCompatActivity {
         Float tamp = (total_kkal_user/tamp_a)*100 ;
         DecimalFormat df = new DecimalFormat(".##");
         String persen = df.format(tamp);
-        text_kkal_user.setText(persen +"% dari Batas Max");
+        text_kkal_user.setText("Rata-rata kalori : 1597");
     }
 
     public void DtoS_pagi(){

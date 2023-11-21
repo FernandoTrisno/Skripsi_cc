@@ -7,6 +7,7 @@ public class ListMakanUser {
     private String nama_makanan;
     private String jumlah_kalori;
     private String porsi;
+    private String gram;
     private Button edit;
     private Button delete;
     private boolean selected;
@@ -24,11 +25,11 @@ public class ListMakanUser {
         this.jumlah_kalori = jumlah_kalori;
     }
 
-
-    ListMakanUser(String nama_makanan, String porsi, String jumlah_kalori){
+    ListMakanUser(String nama_makanan, String porsi, String jumlah_kalori, String gram){
         this.nama_makanan = nama_makanan;
         this.jumlah_kalori = jumlah_kalori;
         this.porsi = porsi;
+        this.gram =gram;
     }
 
     public String getNama_makanan() {
@@ -79,5 +80,14 @@ public class ListMakanUser {
     public void setDelete(Button delete) {
         this.delete = delete;
     }
+
+    public String getGram() {
+        return gram;
+    }
+
+    public void setGram(String gram) {
+        this.gram = gram;
+    }
+
 
 }

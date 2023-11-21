@@ -112,6 +112,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
         holder.list_nama_makanan.setText(list.get(position).getNama_makanan());
         holder.jmlh_kkal.setText(list.get(position).getJumlah_kalori());
         holder.porsi.setText(list.get(position).getPorsi());
+        holder.gram_catat.setText(list.get(position).getGram());
     }
 
     @Override
@@ -120,7 +121,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView list_nama_makanan,porsi,jmlh_kkal,text_nama_makanan,text_jumlah_kalori,satuan_porsi,text_nama_delete,text_kalori_delete;
+        TextView list_nama_makanan,porsi,jmlh_kkal,gram_catat,text_gram,gram_catat_delete, text_nama_makanan,text_jumlah_kalori,satuan_porsi,text_nama_delete,text_kalori_delete;
         ItemClickListener itemClickListener;
         Button btnEdit,btnDelete, btn_edit_simpan, btn_edit_batal, btn_delete_delete, btn_delete_batal;
         EditText edit_text;
@@ -128,8 +129,10 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
         String id_makanan;
         String data_porsi;
         String data_kalori;
+        String data_gram;
         View popup_edit;
         double t_kkal;
+        double t_gram;
         double t_porsi;
         double i_porsi;
         Map<String,Object> edit_data = new HashMap<>();
@@ -160,6 +163,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
             list_nama_makanan = itemView.findViewById(R.id.list_nama);
             jmlh_kkal = itemView.findViewById(R.id.jmlh_kkal);
             porsi = itemView.findViewById(R.id.porsi);
+            gram_catat = itemView.findViewById(R.id.gram_catat);
             //popup edit
             //popup delete
             btnEdit = itemView.findViewById(R.id.button_edit);
@@ -172,10 +176,11 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                 public void onClick(View v) {
                     String tamp_nama = list.get(getAdapterPosition()).getNama_makanan();
                     String tamp_kkal = list.get(getAdapterPosition()).getJumlah_kalori();
+                    String tamp_gram = list.get(getAdapterPosition()).getGram();
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext());
                     popup_edit = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.popup_edit,null);
                     builder.setView(popup_edit);
-
+                    text_gram = popup_edit.findViewById(R.id.gram_popedit);
                     btn_edit_simpan = popup_edit.findViewById(R.id.btn_simpan_edit);
                     btn_edit_batal = popup_edit.findViewById(R.id.btn_batal_edit);
                     text_nama_makanan = popup_edit.findViewById(R.id.text_nama_makanan);
@@ -184,6 +189,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
 
                     text_nama_makanan.setText(tamp_nama);
                     text_jumlah_kalori.setText("@" + tamp_kkal +" Kkal");
+                    text_gram.setText("("+tamp_gram + " gr)");
 
 
                     AlertDialog alertDialog = builder.create();
@@ -199,21 +205,39 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                             i_porsi = Double.parseDouble(input_porsi);
                             double edit_kkal;
                             double a_kkal;
+                            double edit_gram;
+                            double a_gram;
                             DecimalFormat df;
 
                             if (t_porsi == 1){
                                 edit_kkal = t_kkal * i_porsi;
+                                edit_gram = t_gram * i_porsi;
                                 df = new DecimalFormat("#");
                                 data_kalori = df.format(edit_kkal);
+                                data_gram = df.format(edit_gram);
                             }else{
                                 a_kkal = t_kkal/t_porsi; // mencari kkal @1
+                                a_gram = t_gram/t_porsi;
                                 edit_kkal = a_kkal * i_porsi ;
+                                edit_gram = a_gram * i_porsi;
                                 if (edit_kkal % 1 != 0){
                                     df = new DecimalFormat(".##");
                                     data_kalori = df.format(edit_kkal);
+                                    if (edit_gram %1 !=0){
+                                        data_gram = df.format(edit_gram);
+                                    }else {
+                                        df = new DecimalFormat("#");
+                                        data_gram = df.format(edit_gram);
+                                    }
                                 }else {
                                     df = new DecimalFormat("#");
                                     data_kalori = df.format(edit_kkal);
+                                    if (edit_gram %1 !=0){
+                                        data_gram = df.format(edit_gram);
+                                    }else {
+                                        df = new DecimalFormat("#");
+                                        data_gram = df.format(edit_gram);
+                                    }
                                 }
 
                             }
@@ -222,6 +246,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                             edit_data.put("nama_makanan",id_makanan);
                             edit_data.put("jumlah_kalori",data_kalori);
                             edit_data.put("porsi",input_porsi);
+                            edit_data.put("gram)",data_gram);
                             db.collection(emailuser).document(tanggal).collection("Makan Pagi").document(id_makanan).update(edit_data);
                             db.collection(emailuser).document(tanggal).collection("Total_Kalori").document("MP"+id_makanan).update("jumlah kkal",data_kalori);
                             alertDialog.dismiss();
@@ -243,6 +268,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                     String tamp_nama = list.get(getAdapterPosition()).getNama_makanan();
                     String tamp_kkal = list.get(getAdapterPosition()).getJumlah_kalori();
                     String tamp_porsi = list.get(getAdapterPosition()).getPorsi();
+                    String tamp_gram = list.get(getAdapterPosition()).getGram();
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext());
                     popup_delete = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.popup_delete,null);
                     builder.setView(popup_delete);
@@ -251,12 +277,13 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                     btn_delete_batal = popup_delete.findViewById(R.id.btn_batal_delete);
                     text_nama_delete = popup_delete.findViewById(R.id.text_nama_makanan);
                     text_kalori_delete = popup_delete.findViewById(R.id.text_jumlah_kalori);
+                    gram_catat_delete = popup_delete.findViewById(R.id.text_gram_delete);
                     satuan_porsi = popup_delete.findViewById(R.id.satuan_porsi);
 
                     text_nama_delete.setText(tamp_nama);
                     text_kalori_delete.setText("@" + tamp_kkal +" Kkal");
                     satuan_porsi.setText(tamp_porsi +" porsi");
-
+                    gram_catat_delete.setText("/ "+tamp_gram+ "gr");
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
 
@@ -277,6 +304,7 @@ public class ListMakananUserAdapter extends RecyclerView.Adapter<ListMakananUser
                         @Override
                         public void onClick(View v) {
                             db.collection(emailuser).document(tanggal).collection("Total_Kalori").document("MP"+tamp_nama).delete();
+                            db.collection(emailuser).document(tanggal).collection("Total_MP").document("MP"+tamp_nama).delete();
                             db.collection(emailuser).document(tanggal).collection("Makan Pagi").document(tamp_nama).delete();
                             list.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());

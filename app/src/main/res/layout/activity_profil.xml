@@ -1,20 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_profil">
 
 
-     <Button
+    <RelativeLayout
+        android:id="@+id/nama_view"
+        android:layout_width="match_parent"
+        android:layout_height="135dp">
+
+        <View
+            android:id="@+id/imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/icon_profil" />
+
+
+        <TextView
+            android:id="@+id/nama_profil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="12pt"
+            android:textStyle="bold"></TextView>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profil_view"
+        android:layout_width="340dp"
+        android:layout_height="180dp"
+        android:layout_below="@id/nama_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded_white">
+
+
+        <TextView
+            android:id="@+id/bb_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text="Berat Badan"
+            android:textColor="@color/black"
+            android:textSize="9pt"
+            android:textStyle="normal"></TextView>
+
+        <TextView
+            android:id="@+id/bb_profil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bb_text"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text="Kg"
+            android:textColor="@color/black"
+            android:textSize="11pt"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bb_profil"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="16dp"></TextView>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/status"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/black">
+
+        </View>
+
+        <TextView
+            android:id="@+id/ideal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bb_profil"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:gravity="center_horizontal"
+            android:text="Berat Ideal"
+            android:textColor="@color/black"
+            android:textSize="8pt"
+            android:textStyle="normal"></TextView>
+
+        <TextView
+            android:id="@+id/ideal_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bb_profil"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="8pt"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/goals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ideal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Goals"
+            android:textColor="@color/black"
+            android:textSize="8pt"
+            android:textStyle="normal"></TextView>
+
+        <TextView
+            android:id="@+id/goals_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ideal_user"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="8pt"
+            android:textStyle="bold"></TextView>
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_update"
         android:layout_width="215dp"
         android:layout_height="40dp"
+        android:layout_below="@id/profil_view"
         android:layout_centerInParent="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_rounded_blue"
         android:clipToOutline="true"
-        android:text="Update Berat Badan" />
+        android:text="Perbarui Berat Badan"
+        android:textColor="@color/white" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_keluar"
         android:layout_width="215dp"
         android:layout_height="40dp"
@@ -23,7 +170,8 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/button_rounded_red"
         android:clipToOutline="true"
-        android:text="Keluar" />
+        android:text="Keluar"
+        android:textColor="@color/white" />
 
     <RelativeLayout
         android:id="@+id/nav_battom"

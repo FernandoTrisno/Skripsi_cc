@@ -41,6 +41,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
     ArrayList<String> idmakanan = new ArrayList<>();
     ArrayList<String> catatkalori = new ArrayList<>();
     ArrayList<String> catatporsi = new ArrayList<>();
+    ArrayList<String> catatgram = new ArrayList<>();
     Button btnsimpan;
     private Context context;
     List<ListMakanan> list;
@@ -48,17 +49,20 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
     FirebaseUser user;
     String emailuser;
     String tanggal;
-    TextView text_nama_makanan,text_jumlah_kalori,satuan_porsi,text_nama_delete,text_kalori_delete;
+    TextView text_nama_makanan,text_jumlah_kalori,gram_popedit,satuan_porsi,text_nama_delete,text_kalori_delete, text_gram;
     Button btnEdit,btnDelete, btn_edit_simpan, btn_edit_batal, btn_delete_delete, btn_delete_batal;
     EditText edit_text;
     RecyclerView listMP;
+    RelativeLayout con_layout;
     String id_makanan;
     String data_porsi;
     String data_kalori;
+    String data_gram;
     View popup_edit;
     double t_kkal;
     double t_porsi;
     double i_porsi;
+    double t_gram;
     Map<String,Object> edit_data = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -93,6 +97,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
     public void setIdmakanan(ArrayList<String> idmakanan) {
         this.idmakanan = idmakanan;
     }
+
 
     private void getDataUser(){
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -142,6 +147,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
         holder.list_nama_makanan.setText(list.get(position).getNama_makanan());
         holder.jmlh_kkal.setText(list.get(position).getJumlah_kalori());
         holder.porsi.setText(list.get(position).getPorsi());
+        holder.gram.setText(list.get(position).getGram());
         holder.checkBoxlist.setOnCheckedChangeListener(null);
         holder.checkBoxlist.setChecked(list.get(position).isSelected());
         holder.checkBoxlist.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -151,9 +157,11 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
                     String tamp = list.get(holder.getAdapterPosition()).getNama_makanan();
                     String tamp_kkal = list.get(holder.getAdapterPosition()).getJumlah_kalori();
                     String tamp_porsi = list.get(holder.getAdapterPosition()).getPorsi();
+                    String tamp_gram = list.get(holder.getAdapterPosition()).getGram();
                     idmakanan.add(tamp);
                     catatkalori.add(tamp_kkal);
                     catatporsi.add(tamp_porsi);
+                    catatgram.add(tamp_gram);
                     holder.checkBoxlist.setChecked(true);
                 }else{
                     String tamp = list.get(holder.getAdapterPosition()).getNama_makanan();
@@ -162,6 +170,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
                     idmakanan.remove(holder.getAdapterPosition());
                     catatkalori.remove(holder.getAdapterPosition());
                     catatporsi.remove(holder.getAdapterPosition());
+                    catatgram.remove(holder.getAdapterPosition());
                     holder.checkBoxlist.setChecked(false);
                 }
             }
@@ -172,6 +181,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
             public void onClick(View v) {
                 String tamp_nama = list.get(holder.getAdapterPosition()).getNama_makanan();
                 String tamp_kkal = list.get(holder.getAdapterPosition()).getJumlah_kalori();
+                String tamp_gram = list.get(holder.getAdapterPosition()).getGram();
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext());
                 popup_edit = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.popup_edit,null);
                 builder.setView(popup_edit);
@@ -180,10 +190,12 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
                 btn_edit_batal = popup_edit.findViewById(R.id.btn_batal_edit);
                 text_nama_makanan = popup_edit.findViewById(R.id.text_nama_makanan);
                 text_jumlah_kalori = popup_edit.findViewById(R.id.text_jumlah_kalori);
+                gram_popedit = popup_edit.findViewById(R.id.gram_popedit);
                 edit_text = popup_edit.findViewById(R.id.editText);
 
                 text_nama_makanan.setText(tamp_nama);
                 text_jumlah_kalori.setText("@" + tamp_kkal +" Kkal");
+                gram_popedit.setText("("+tamp_gram+" gr)");
 
 
                 AlertDialog alertDialog = builder.create();
@@ -195,25 +207,44 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
                         String input_porsi = edit_text.getText().toString();
                         String tamp_porsi = list.get(holder.getAdapterPosition()).getPorsi();
                         t_kkal = Double.parseDouble(tamp_kkal);
+                        t_gram = Double.parseDouble(tamp_gram);
                         t_porsi = Double.parseDouble(tamp_porsi);
                         i_porsi = Double.parseDouble(input_porsi);
                         double edit_kkal;
                         double a_kkal;
+                        double edit_gram;
+                        double a_gram;
                         DecimalFormat df;
 
                         if (t_porsi == 1){
                             edit_kkal = t_kkal * i_porsi;
+                            edit_gram = t_gram * i_porsi;
                             df = new DecimalFormat("#");
                             data_kalori = df.format(edit_kkal);
+                            data_gram = df.format(edit_gram);
                         }else{
                             a_kkal = t_kkal/t_porsi; // mencari kkal @1
+                            a_gram = t_gram/t_porsi;
                             edit_kkal = a_kkal * i_porsi ;
+                            edit_gram = a_gram * i_porsi;
                             if (edit_kkal % 1 != 0){
                                 df = new DecimalFormat(".##");
                                 data_kalori = df.format(edit_kkal);
+                                if (edit_gram %1 !=0){
+                                    data_gram = df.format(edit_gram);
+                                }else {
+                                    df = new DecimalFormat("#");
+                                    data_gram = df.format(edit_gram);
+                                }
                             }else {
                                 df = new DecimalFormat("#");
                                 data_kalori = df.format(edit_kkal);
+                                if (edit_gram %1 !=0){
+                                    data_gram = df.format(edit_gram);
+                                }else {
+                                    df = new DecimalFormat("#");
+                                    data_gram = df.format(edit_gram);
+                                }
                             }
 
                         }
@@ -222,11 +253,19 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
                         edit_data.put("nama_makanan",id_makanan);
                         edit_data.put("jumlah_kalori",data_kalori);
                         edit_data.put("porsi",input_porsi);
+                        edit_data.put("gra,",data_gram);
                         db.collection("daftar_makanan").document(id_makanan).update(edit_data);
                         alertDialog.dismiss();
                     }
                 });
-            holder.listkalori.refreshDrawableState();
+
+                btn_edit_batal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.cancel();
+                    }
+                });
+
             }
         });
     }
@@ -237,7 +276,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView list_nama_makanan,porsi,jmlh_kkal;
+        TextView list_nama_makanan,porsi,jmlh_kkal,gram;
         CheckBox checkBoxlist;
         ItemClickListener itemClickListener;
         Button btnsimpan;
@@ -267,6 +306,7 @@ public class ListMakananAdapter extends RecyclerView.Adapter<ListMakananAdapter.
             list_nama_makanan = itemView.findViewById(R.id.list_nama);
             jmlh_kkal = itemView.findViewById(R.id.jmlh_kkal);
             porsi = itemView.findViewById(R.id.porsi);
+            gram = itemView.findViewById(R.id.gram);
             checkBoxlist = itemView.findViewById(R.id.checkBoxlist);
             con_layout = itemView.findViewById(R.id.con_listitem);
             btnsimpan = itemView.findViewById(R.id.button_catat);

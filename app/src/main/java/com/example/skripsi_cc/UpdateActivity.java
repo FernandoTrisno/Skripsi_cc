@@ -67,8 +67,18 @@ public class UpdateActivity extends AppCompatActivity {
     DecimalFormat df = new DecimalFormat(".##");
     double hasil;
     String[] isi_spinner = {"Olahraga 0-1 Hari / Minggu", "Olahraga 2-3 Hari / Minggu", "Olahraga 3-5 Hari / Minggu", "Olahraga 6-7 Hari / Minggu", "Setiap Hari, Sehari Bisa 2 Kali"};
-    int bb_awal;
-    int bb_baru;
+    double bb_awal;
+    double bb_baru;
+    double bmi;
+    double bmi2;
+    double ideal_bmi1;
+    double ideal_bmi2;
+    String ideal1;
+    String ideal2;
+    String text_bmi;
+    String goals;
+    String input_bmi;
+    String status;
 
 
     @Override
@@ -105,6 +115,15 @@ public class UpdateActivity extends AppCompatActivity {
             hitung_kalori();
             bb_awal = parseInt(tamp_bb);
             bb_baru = parseInt(bb_user);
+            if(bb_awal<bb_baru){
+                text_bmi = "Yuk lebih semangat mengontrol kalori anda. ";
+            }
+            else if(bb_awal==bb_baru){
+                text_bmi = "Yey, Anda berhasil mempertahankan berat badan anda. ";
+            }
+            else if(bb_awal>bb_baru){
+                text_bmi = "Hore !!! Berat badan anda berhasil turun. ";
+            }
             showDialog();
         });
 
@@ -145,69 +164,44 @@ public class UpdateActivity extends AppCompatActivity {
         usia.setText(tamp_usia);
     }
 
+    private void bmi(){
+        DecimalFormat df = new DecimalFormat("#");
+        double tb2 = parseInt(tb_user);
+        double t_tb2 = (tb2*tb2)/10000;
+        double bb2 = parseInt(bb_user);
+        bmi2 = ((bb2/t_tb2));
+        ideal_bmi1 = 18.5 * t_tb2;
+        ideal_bmi2 = 24.9 * t_tb2;
+        ideal1 = (df.format(ideal_bmi1));
+        ideal2 = (df.format(ideal_bmi2));
+        System.out.println(bmi2);
+        if(bmi<18.5){
+            status = "Berat Badan Kurang";
+            goals = "Menaikan Berat Badan";
+            text_bmi = "Berat badan anda KURANG";
+        }else if(bmi>18.5&&bmi<24.9){
+            status = "Berat Badan Normal";
+            goals = "Mempertahankan Berat Badan";
+            text_bmi = "Berat badan anda NORMAL";
+        }else if(bmi>24.9){
+            status = "Berat Badan Berlebih";
+            goals = "Menurunkan Berat Badan";
+            text_bmi = "Berat badan anda BERLEBIH";
+        }
+    }
+
     private void showDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Pengumuman");
-        if (bb_awal>bb_baru){
-            alertDialogBuilder.setMessage("Hore !!! Berat badan anda berhasil turun. Yuk terus rutin mengontrol kalori anda.")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                        }
-                    });
-            alertDialogBuilder2.setTitle("Pengumuman");
-            alertDialogBuilder2.setMessage("Jumlah kebutuhan kalori pada tubuh anda sekarang " +kaloritubuh +" kkal")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                            startActivity(new Intent(UpdateActivity.this,BerandaActivity.class));
-                        }
-                    });
-        } if(bb_awal==bb_baru){
-            alertDialogBuilder.setMessage("Yey!!! Anda berhasil mempertahankan berat badan anda. Yuk terus rutin mengontrol kalori anda. ")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                        }
-                    });
-            alertDialogBuilder2.setTitle("Pengumuman");
-            alertDialogBuilder2.setMessage("Jumlah kebutuhan kalori pada tubuh anda sekarang " +kaloritubuh +" kkal")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                            startActivity(new Intent(UpdateActivity.this,BerandaActivity.class));
-                        }
-                    });
-        }if(bb_awal<bb_baru){
-            alertDialogBuilder.setMessage("Yuk lebih semangat lagi dalam mengontrol kalori anda")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                        }
-                    });
-            alertDialogBuilder2.setTitle("Pengumuman");
-            alertDialogBuilder2.setMessage("Jumlah kebutuhan kalori pada tubuh anda sekarang " +kaloritubuh +" kkal")
-                    .setCancelable(false)
-                    .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            UpdateActivity.this.finish();
-                            startActivity(new Intent(UpdateActivity.this,BerandaActivity.class));
-                        }
-                    });
-        }
-
+        alertDialogBuilder.setMessage(text_bmi+", jumlah kebutuhan kalori pada tubuh anda sebanyak " + kaloritubuh + " kkal")
+                .setCancelable(false)
+                .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        UpdateActivity.this.finish();
+                        startActivity(new Intent(UpdateActivity.this, ProfilActivity.class));
+                    }
+                });
         // membuat alert dialog dari builder
         AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -215,7 +209,6 @@ public class UpdateActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
-
     private void getDataUser(){
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null){
@@ -227,6 +220,10 @@ public class UpdateActivity extends AppCompatActivity {
         int bb = parseInt(bb_user);
         int tb = parseInt(tb_user);
         int u = parseInt(usia_user);
+        double d_bb = parseInt(bb_user);
+        double d_tb = parseInt(tb_user);
+        bmi = ((d_bb/((d_tb*d_tb)/10000)));
+        DecimalFormat df2 = new DecimalFormat(".##");
         DecimalFormat df = new DecimalFormat("#");
         if(tamp_jk.equals("Laki-laki")) {
             if (af.equals("Olahraga 0-1 Hari / Minggu")) {
@@ -254,6 +251,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
         }
         kaloritubuh = (df.format(hasil));
+        input_bmi = (df2.format(bmi));
     }
 
 
@@ -275,6 +273,7 @@ public class UpdateActivity extends AppCompatActivity {
             usia.requestFocus();
         }else{
             kaloriTubuh();
+            bmi();
             kalori.put("berat badan",bb_user);
             kalori.put("tinggi badan",tb_user);
             kalori.put("usia",usia_user);
@@ -282,6 +281,11 @@ public class UpdateActivity extends AppCompatActivity {
             kalori.put("aktivitas fisik",af_user);
             kalori.put("boolean","1");
             kalori.put("kebutuhan kalori", kaloritubuh);
+            kalori.put("bmi",input_bmi);
+            kalori.put("goals",goals);
+            kalori.put("ideal1",ideal1);
+            kalori.put("ideal2",ideal2);
+            kalori.put("status",status);
             db.collection("users").document(emailuser).set(kalori, SetOptions.merge());
 
         }

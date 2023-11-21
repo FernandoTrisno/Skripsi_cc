@@ -36,15 +36,15 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tidak_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_rounded_grey"
             android:text="Tidak"
-            android:textColor="@color/white"></Button>
+            android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_ya_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:textColor="@color/white"
             android:layout_toRightOf="@id/btn_tidak_done"
             android:background="@drawable/button_rounded_red"
-            android:text="Ya"></Button>
+            android:text="Ya"></androidx.appcompat.widget.AppCompatButton>
 
     </RelativeLayout>
 

@@ -63,6 +63,7 @@ public class DaftarMakanMinum extends AppCompatActivity {
     ArrayList <String> idnama = new ArrayList<>();
     ArrayList <String> catatkkal = new ArrayList<>();
     ArrayList <String> catatporsi = new ArrayList<>();
+    ArrayList <String> catatgram = new ArrayList<>();
     RelativeLayout con_layout;
 
     @Override
@@ -87,7 +88,7 @@ public class DaftarMakanMinum extends AppCompatActivity {
         listkalori.addItemDecoration(decoration);
         listkalori.setAdapter(listMakananAdapter);
         listkalori.setVisibility(View.INVISIBLE);
-
+        cari.setIconified(false);
         cari.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -111,6 +112,7 @@ public class DaftarMakanMinum extends AppCompatActivity {
                     checklist.put("nama_makanan",idnama.get(i));
                     checklist.put("jumlah_kalori",catatkkal.get(i));
                     checklist.put("porsi",catatporsi.get(i));
+                    checklist.put("gram" , catatgram.get(i));
                     db.collection(emailuser).document(tanggal).collection("Makan Pagi").document(idnama.get(i)).set(checklist,SetOptions.merge());
                     db.collection(emailuser).document(tanggal).collection("Total_Kalori").document("MP"+idnama.get(i)).set(total,SetOptions.merge());
                     db.collection(emailuser).document(tanggal).collection("Total_MP").document("MP"+idnama.get(i)).set(total,SetOptions.merge());
@@ -141,23 +143,22 @@ public class DaftarMakanMinum extends AppCompatActivity {
         idnama = listMakananAdapter.idmakanan;
         catatkkal = listMakananAdapter.catatkalori;
         catatporsi = listMakananAdapter.catatporsi;
+        catatgram = listMakananAdapter.catatgram;
     }
 
     private void filter (String text){
         ArrayList<ListMakanan> filterlist = new ArrayList<ListMakanan>();
-        for(ListMakanan item : list){
-            if (item.getNama_makanan().toLowerCase().contains(text.toLowerCase())){
-                filterlist.add(item);
-                listkalori.setVisibility(View.VISIBLE);
+        if(text.equals("")){
+            System.out.println("empty");
+        }else{
+            for(ListMakanan item : list){
+                if (item.getNama_makanan().toLowerCase().contains(text.toLowerCase())){
+                    filterlist.add(item);
+                    listkalori.setVisibility(View.VISIBLE);
+                }
             }
-            if(filterlist.isEmpty()){
-                listkalori.setVisibility(View.INVISIBLE);
-            }else{
-                listMakananAdapter.filteradapterlist(filterlist);
-            }
-
         }
-
+        listMakananAdapter.filteradapterlist(filterlist);
     }
 
 
@@ -171,7 +172,7 @@ public class DaftarMakanMinum extends AppCompatActivity {
                         list.clear();
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot document : task.getResult()){
-                                ListMakanan listMakanan = new ListMakanan(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"));
+                                ListMakanan listMakanan = new ListMakanan(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"),document.getString("gram"));
                                 list.add(listMakanan);
                             }
                             listMakananAdapter.notifyDataSetChanged();

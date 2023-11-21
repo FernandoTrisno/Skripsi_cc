@@ -15,17 +15,18 @@
         android:textColor="@color/black"
         android:textSize="20dp"></TextView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_delete"
         android:layout_width="78dp"
         android:layout_height="37dp"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:background="@drawable/button_rounded_red"
+        android:textColor="@color/white"
         android:text="Hapus"
-        android:textSize="12dp"></Button>
+        android:textSize="12dp"></androidx.appcompat.widget.AppCompatButton>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_edit"
         android:layout_width="78dp"
         android:layout_height="35dp"
@@ -34,7 +35,8 @@
         android:layout_toLeftOf="@id/button_delete"
         android:background="@drawable/button_rounded_blue"
         android:text="Edit"
-        android:textSize="12dp"></Button>
+        android:textColor="@color/white"
+        android:textSize="12dp"></androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/porsi"
@@ -56,6 +58,38 @@
         android:text="Porsi"
         android:textSize="14dp">
     </TextView>
+
+    <TextView
+        android:id="@+id/atau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_porsi"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_toRightOf="@+id/text_kkal"
+        android:text="/ "
+        android:textSize="14dp"></TextView>
+
+    <TextView
+        android:id="@+id/gram_catat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_porsi"
+        android:layout_marginTop="9dp"
+        android:layout_toRightOf="@+id/atau"
+        android:text="TextView"
+        android:textSize="14dp"></TextView>
+
+    <TextView
+        android:id="@+id/gram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_porsi"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_toRightOf="@+id/gram_catat"
+        android:text="gr"
+        android:textSize="14dp"></TextView>
 
     <TextView
         android:id="@+id/jmlh_kkal"

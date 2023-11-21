@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ReportActivity">
 
+
     <View
         android:id="@+id/con_header_report"
         android:layout_width="match_parent"
@@ -464,5 +465,6 @@
 
         </RelativeLayout>
     </RelativeLayout>
+
 
 </RelativeLayout>

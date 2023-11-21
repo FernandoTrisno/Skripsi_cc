@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Source;
 
 import org.eazegraph.lib.models.PieModel;
@@ -38,7 +39,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BerandaActivity extends AppCompatActivity {
     RelativeLayout makan_pagi;
@@ -104,7 +107,8 @@ public class BerandaActivity extends AppCompatActivity {
     String tamp_kkal_cemnilan;
 
     TextView ket_mp,ket_ms,ket_mm,ket_mc;
-
+    Map<String,Object> cek_tanggal = new HashMap<>();
+    Map<String,Long> cek_index = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,6 +139,7 @@ public class BerandaActivity extends AppCompatActivity {
         home = findViewById(R.id.home_beranda);
         report = findViewById(R.id.report_beranda);
         profil = findViewById(R.id.profil_beranda);
+
         getTanggal();
         getDataUser();
         ceknama();
@@ -144,6 +149,11 @@ public class BerandaActivity extends AppCompatActivity {
         kalori_mm();
         kalori_mc();
         System.out.println(tamp_kkal);
+
+        cek_tanggal.put("tanggal",tanggal);
+        cek_tanggal.put("index", "0");
+        db.collection(emailuser).document(tanggal).collection("cek_tanggal").document("tanggal").set(cek_tanggal, SetOptions.merge());
+        db.collection(emailuser).document(tanggal).collection("cek_tanggal").document("index").set(cek_tanggal, SetOptions.merge());
 
 
         makan_pagi.setOnClickListener(view -> {
@@ -179,6 +189,8 @@ public class BerandaActivity extends AppCompatActivity {
         tanggal = waktu.format(skr);
         System.out.println("Tanggal Sekarang = " + tanggal);
     }
+
+
 
     public void totalKkal() {
         db.collection(emailuser).document(tanggal).collection("Total_Kalori")

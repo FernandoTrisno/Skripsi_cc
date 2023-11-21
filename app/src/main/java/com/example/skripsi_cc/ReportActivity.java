@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,9 +48,6 @@ public class ReportActivity extends AppCompatActivity {
     FirebaseUser user;
     String emailuser;
     String tanggal;
-    String hari;
-    String bulan;
-    String tahun;
     String namauser;
     ArrayList<String>total = new ArrayList<>();
     ArrayList<String>totalMP = new ArrayList<>();
@@ -90,7 +85,7 @@ public class ReportActivity extends AppCompatActivity {
     float set_cemilan;
     String tamp_kkal_cemnilan;
 
-
+    Date tanggalprev;
     PieChart pieChart;
     List<String>isi_spinner = new ArrayList<>();
     ArrayAdapter <String> arrayAdapter;
@@ -98,9 +93,6 @@ public class ReportActivity extends AppCompatActivity {
 
     String max;
     double d_max;
-
-    int h,b,t;
-
     int colorRed = Color.rgb(224,0,0);
 
 
@@ -154,7 +146,16 @@ public class ReportActivity extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            prevTanggal();
+                prevTanggal();
+
+                pieChart.startAnimation();
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextTanggal();
+                pieChart.startAnimation();
             }
         });
 
@@ -182,38 +183,35 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void prevTanggal(){
-        gantihari();
-        gantibulan();
-        gantitahun();
-
-        h = Integer.parseInt(hari);
-        b = Integer.parseInt(bulan);
-        t = Integer.parseInt(tahun);
-
-        h=h-1;
-        tanggal = h+"-"+bulan+"-"+tahun;
-
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = format.parse(tanggal);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            c.add(Calendar.DATE,-1);
+            tanggal = format.format(c.getTime());
+            System.out.println(tanggal);
+        }catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            tanggal ="";
+        }
     }
 
-    private void gantihari(){
-        Date skr = Calendar.getInstance().getTime();
-        SimpleDateFormat waktu = new SimpleDateFormat("dd");
-        hari = waktu.format(skr);
-        System.out.println("Tanggal Sekarang = " + tanggal);
-    }
-
-    private void gantibulan(){
-        Date skr = Calendar.getInstance().getTime();
-        SimpleDateFormat waktu = new SimpleDateFormat("MM");
-        bulan = waktu.format(skr);
-        System.out.println("Tanggal Sekarang = " + tanggal);
-    }
-
-    private void gantitahun(){
-        Date skr = Calendar.getInstance().getTime();
-        SimpleDateFormat waktu = new SimpleDateFormat("yyyy");
-        tahun = waktu.format(skr);
-        System.out.println("Tanggal Sekarang = " + tanggal);
+    private void nextTanggal(){
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = format.parse(tanggal);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            c.add(Calendar.DATE,+1);
+            tanggal = format.format(c.getTime());
+            System.out.println(tanggal);
+        }catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            tanggal ="";
+        }
     }
 
 

@@ -59,7 +59,7 @@ public class DetailMakanMalam extends AppCompatActivity {
     String max;
     double a;
     double max_kkal;
-
+    TextView text_detailmm;
 
     View popup_peringatan;
     TextView text_peringatan;
@@ -73,6 +73,8 @@ public class DetailMakanMalam extends AppCompatActivity {
         setContentView(R.layout.detail_malam);
         back_malam = findViewById(R.id.ic_back_malam);
         catat_makan_malam = findViewById(R.id.button_catatmalam);
+        text_detailmm = findViewById(R.id.text_detailmm);
+        text_detailmm.setVisibility(View.INVISIBLE);
         listMP = (RecyclerView) findViewById(R.id.listMakanMalam);
         db = FirebaseFirestore.getInstance();
         listMP.setHasFixedSize(true);
@@ -155,7 +157,7 @@ public class DetailMakanMalam extends AppCompatActivity {
                         list.clear();
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot document : task.getResult()){
-                                ListMakanUser listMakananUser = new ListMakanUser(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"));
+                                ListMakanUser listMakananUser = new ListMakanUser(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"),document.getString("gram"));
                                 list.add(listMakananUser);
                             }
                             listMakananAdapter.notifyDataSetChanged();
@@ -224,5 +226,8 @@ public class DetailMakanMalam extends AppCompatActivity {
             tamp_kkal = (df.format(a));
         }
         System.out.println("Cek isi string :" + tamp_kkal);
+        if(a>0){
+            text_detailmm.setVisibility(View.VISIBLE);
+        }
     }
 }

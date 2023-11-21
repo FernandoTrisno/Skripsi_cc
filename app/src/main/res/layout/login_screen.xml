@@ -40,11 +40,10 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_text_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password_text_login"
-            android:inputType="textPassword"
-            ></com.google.android.material.textfield.TextInputEditText>
+            android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

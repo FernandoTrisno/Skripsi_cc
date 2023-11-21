@@ -260,6 +260,7 @@ public class ListMakananUserMalamAdapter extends RecyclerView.Adapter<ListMakana
                         @Override
                         public void onClick(View v) {
                             db.collection(emailuser).document(tanggal).collection("Total_Kalori").document("MM"+tamp_nama).delete();
+                            db.collection(emailuser).document(tanggal).collection("Total_MM").document("MM"+tamp_nama).delete();
                             db.collection(emailuser).document(tanggal).collection("Makan Malam").document(tamp_nama).delete();
                             list.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());

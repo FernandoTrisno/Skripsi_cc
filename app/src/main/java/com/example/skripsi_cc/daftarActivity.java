@@ -117,7 +117,8 @@ public class daftarActivity extends AppCompatActivity {
         }else if (pass.length()<8){
             pass_signup.setError("Password minimal 8 karakter !");
             pass_signup.requestFocus();
-        } else{
+        }
+        else{
             mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -133,7 +134,7 @@ public class daftarActivity extends AppCompatActivity {
                             }
                         });
                     }else{
-                        Toast.makeText(daftarActivity.this,"Error : "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(daftarActivity.this,"Error : Akun gagal dibuat",Toast.LENGTH_SHORT).show();
                     }
                 }
             });

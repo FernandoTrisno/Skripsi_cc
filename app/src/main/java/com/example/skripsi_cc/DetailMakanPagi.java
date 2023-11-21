@@ -66,6 +66,8 @@ public class DetailMakanPagi extends AppCompatActivity {
     double a;
     double max_kkal;
 
+    TextView text_detailmp;
+
     View popup_peringatan;
     TextView text_peringatan;
     Button btn_peringatan;
@@ -79,6 +81,8 @@ public class DetailMakanPagi extends AppCompatActivity {
         back = findViewById(R.id.ic_back_pagi);
         catat_makan = findViewById(R.id.button_catatpagi);
         listMP = (RecyclerView) findViewById(R.id.listMakanPagi);
+        text_detailmp = findViewById(R.id.text_detailmp);
+        text_detailmp.setVisibility(View.INVISIBLE);
         db = FirebaseFirestore.getInstance();
         listMP.setHasFixedSize(true);
         listMakananAdapter = new ListMakananUserAdapter(getApplicationContext(), list);
@@ -160,7 +164,7 @@ public class DetailMakanPagi extends AppCompatActivity {
                         list.clear();
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot document : task.getResult()){
-                                ListMakanUser listMakananUser = new ListMakanUser(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"));
+                                ListMakanUser listMakananUser = new ListMakanUser(document.getString("nama_makanan"),document.getString("porsi"),document.getString("jumlah_kalori"),document.getString("gram"));
                                 list.add(listMakananUser);
                             }
                             listMakananAdapter.notifyDataSetChanged();
@@ -230,6 +234,10 @@ public class DetailMakanPagi extends AppCompatActivity {
             tamp_kkal = (df.format(a));
         }
         System.out.println("Cek isi string :" + tamp_kkal);
+        if(a>0){
+            text_detailmp.setVisibility(View.VISIBLE);
+        }
+
     }
 
 }

@@ -7,6 +7,7 @@ public class ListMakanan {
     private String nama_makanan;
     private String jumlah_kalori;
     private String porsi;
+    private String gram;
     private CheckBox checkBoxlist;
     private boolean selected;
     private long tanggal;
@@ -19,10 +20,11 @@ public class ListMakanan {
         this.tanggal = tanggal;
     }
 
-    ListMakanan(String nama_makanan, String porsi, String jumlah_kalori){
+    ListMakanan(String nama_makanan, String porsi, String jumlah_kalori,String gram){
         this.nama_makanan = nama_makanan;
         this.jumlah_kalori = jumlah_kalori;
         this.porsi = porsi;
+        this.gram = gram;
     }
 
     ListMakanan(CheckBox checkBoxlist){
@@ -63,6 +65,14 @@ public class ListMakanan {
 
     public void setSelected(boolean selected) {
        selected = selected;
+    }
+
+    public String getGram() {
+        return gram;
+    }
+
+    public void setGram(String gram) {
+        this.gram = gram;
     }
 
 

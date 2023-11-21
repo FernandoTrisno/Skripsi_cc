@@ -50,6 +50,17 @@ public class FormActivity extends AppCompatActivity {
     String emailuser;
     String tamp_jk;
     String kaloritubuh;
+
+    double bmi;
+    double bmi2;
+    double ideal_bmi1;
+    double ideal_bmi2;
+    String ideal1;
+    String ideal2;
+    String text_bmi;
+    String goals;
+    String status;
+    String input_bmi;
     DecimalFormat df = new DecimalFormat(".##");
     double hasil;
     String[] isi_spinner = {"Olahraga 0-1 Hari / Minggu", "Olahraga 2-3 Hari / Minggu", "Olahraga 3-5 Hari / Minggu", "Olahraga 6-7 Hari / Minggu", "Setiap Hari, Sehari Bisa 2 Kali"};
@@ -96,15 +107,15 @@ public class FormActivity extends AppCompatActivity {
     private void showDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Pengumuman");
-        alertDialogBuilder.setMessage("Jumlah kebutuhan kalori pada tubuh anda sebanyak " +kaloritubuh +" kkal")
+        alertDialogBuilder.setMessage(text_bmi+", jumlah kebutuhan kalori pada tubuh anda sebanyak " + kaloritubuh + " kkal")
                 .setCancelable(false)
                 .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FormActivity.this.finish();
-                startActivity(new Intent(FormActivity.this,BerandaActivity.class));
-            }
-        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FormActivity.this.finish();
+                        startActivity(new Intent(FormActivity.this, BerandaActivity.class));
+                    }
+                });
         // membuat alert dialog dari builder
         AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -124,6 +135,10 @@ public class FormActivity extends AppCompatActivity {
         int bb = parseInt(bb_user);
         int tb = parseInt(tb_user);
         int u = parseInt(usia_user);
+        double d_bb = parseInt(bb_user);
+        double d_tb = parseInt(tb_user);
+        bmi = ((d_bb/((d_tb*d_tb)/10000)));
+        DecimalFormat df2 = new DecimalFormat(".##");
         DecimalFormat df = new DecimalFormat("#");
         if(tamp_jk.equals("Laki-laki")) {
             if (af.equals("Olahraga 0-1 Hari / Minggu")) {
@@ -151,9 +166,35 @@ public class FormActivity extends AppCompatActivity {
             }
         }
         kaloritubuh = (df.format(hasil));
+        input_bmi = (df2.format(bmi));
+        System.out.println(bmi);
     }
 
-
+    private void bmi(){
+        DecimalFormat df = new DecimalFormat("#");
+        double tb2 = parseInt(tb_user);
+        double t_tb2 = (tb2*tb2)/10000;
+        double bb2 = parseInt(bb_user);
+        bmi2 = ((bb2/t_tb2));
+        ideal_bmi1 = 18.5 * t_tb2;
+        ideal_bmi2 = 24.9 * t_tb2;
+        ideal1 = (df.format(ideal_bmi1));
+        ideal2 = (df.format(ideal_bmi2));
+        System.out.println(bmi2);
+        if(bmi<18.5){
+            status = "Berat Badan Kurang";
+            goals = "Menaikan Berat Badan";
+            text_bmi = "Berat badan anda KURANG";
+        }else if(bmi>18.5&&bmi<24.9){
+            status = "Berat Badan Normal";
+            goals = "Mempertahankan Berat Badan";
+            text_bmi = "Berat badan anda NORMAL";
+        }else if(bmi>24.9){
+            status = "Berat Badan Berlebih";
+            goals = "Menurunkan Berat Badan";
+            text_bmi = "Berat badan anda BERLEBIH";
+        }
+    }
 
     private void hitung_kalori() {
         //radio button
@@ -167,14 +208,15 @@ public class FormActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(bb_user)) {
             berat_badan.setError("Data ini wajib diisi !");
             berat_badan.requestFocus();
-        } else if (TextUtils.isEmpty(tb_user)) {
+        }else if (TextUtils.isEmpty(tb_user)) {
             tinggi_badan.setError("Data ini wajib diisi !");
             tinggi_badan.requestFocus();
-        } else if (TextUtils.isEmpty(usia_user)) {
+        }else if (TextUtils.isEmpty(usia_user)) {
             usia.setError("Data ini wajib diisi !");
             usia.requestFocus();
         }else{
             kaloriTubuh();
+            bmi();
             kalori.put("berat badan",bb_user);
             kalori.put("tinggi badan",tb_user);
             kalori.put("usia",usia_user);
@@ -182,6 +224,11 @@ public class FormActivity extends AppCompatActivity {
             kalori.put("aktivitas fisik",af_user);
             kalori.put("boolean","1");
             kalori.put("kebutuhan kalori", kaloritubuh);
+            kalori.put("bmi",input_bmi);
+            kalori.put("goals",goals);
+            kalori.put("ideal1",ideal1);
+            kalori.put("ideal2",ideal2);
+            kalori.put("status","");
             db.collection("users").document(emailuser).set(kalori, SetOptions.merge());
 
         }

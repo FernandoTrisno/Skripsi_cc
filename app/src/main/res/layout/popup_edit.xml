@@ -32,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/header_edit"
-        android:layout_marginTop="22dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="21dp"
         android:layout_toRightOf="@+id/text_nama_makanan"
         android:text="TextView"
         android:textColor="@color/black"
@@ -48,6 +49,18 @@
         android:fontFamily="sans-serif-medium"
         android:text="Satuan"
         android:textColor="@color/drak_grey"></TextView>
+
+    <TextView
+        android:id="@+id/gram_popedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_edit"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="21dp"
+        android:layout_toRightOf="@+id/text_jumlah_kalori"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16dp"></TextView>
 
     <EditText
         android:layout_width="100dp"
